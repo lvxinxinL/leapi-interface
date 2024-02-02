@@ -1,0 +1,8 @@
+server:
+  port: 8102
+  servlet:
+    context-path: /api
+leapi:
+  client:
+    access-key: ghost
+    secret-key: abcdefg
