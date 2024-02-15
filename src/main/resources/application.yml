@@ -6,3 +6,9 @@ leapi:
   client:
     access-key: ghost
     secret-key: abcdefg
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
