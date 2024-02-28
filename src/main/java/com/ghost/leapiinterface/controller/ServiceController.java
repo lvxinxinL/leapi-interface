@@ -2,7 +2,6 @@ package com.ghost.leapiinterface.controller;
 
 import cn.hutool.json.JSONUtil;
 import com.ghost.leapiclientsdk.model.User;
-import com.ghost.leapiinterface.utils.RequestUtils;
 import icu.qimuu.qiapisdk.exception.ApiException;
 import icu.qimuu.qiapisdk.model.params.RandomWallpaperParams;
 import icu.qimuu.qiapisdk.model.response.RandomWallpaperResponse;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 import static com.ghost.leapiinterface.utils.RequestUtils.buildUrl;
+import static com.ghost.leapiinterface.utils.RequestUtils.get;
 
 /**
  * 接口服务：包括获取名称接口和第三方接口
@@ -33,7 +33,7 @@ public class ServiceController {
      */
     @GetMapping("/poisonousChickenSoup")
     public String getPoisonousChickenSoup() {
-        return RequestUtils.get("https://api.btstu.cn/yan/api.php?charset=utf-8&encode=json");// 真实的第三方接口地址
+        return get("https://api.btstu.cn/yan/api.php?charset=utf-8&encode=json");// 真实的第三方接口地址
     }
 
     /**
@@ -45,14 +45,15 @@ public class ServiceController {
      */
     @GetMapping("/randomWallpaper")
     public RandomWallpaperResponse randomWallpaper(RandomWallpaperParams randomWallpaperParams) throws ApiException {
-        String baseUrl = "https://api.btstu.cn/sjbz/api.php";
+//        String baseUrl = "https://api.btstu.cn/sjbz/api.php";
+        String baseUrl = "https://api.vvhan.com/api/view?type=json";
         String url = buildUrl(baseUrl, randomWallpaperParams);
         if (StringUtils.isAllBlank(randomWallpaperParams.getLx(), randomWallpaperParams.getMethod())) {
             url = url + "?format=json";
         } else {
             url = url + "&format=json";
         }
-        return JSONUtil.toBean(RequestUtils.get(url), RandomWallpaperResponse.class);
+        return JSONUtil.toBean(get(baseUrl), RandomWallpaperResponse.class);
     }
 
     /**
@@ -62,7 +63,7 @@ public class ServiceController {
      */
     @GetMapping("/loveTalk")
     public String randomLoveTalk() {
-        return RequestUtils.get("https://api.vvhan.com/api/love");
+        return get("https://api.vvhan.com/api/love");
     }
 
     /**
@@ -72,7 +73,7 @@ public class ServiceController {
      */
     @GetMapping("/en")
     public String dailyEnglish() {
-        return RequestUtils.get("https://api.vvhan.com/api/en");
+        return get("https://api.vvhan.com/api/en");
     }
 
     /**
@@ -82,7 +83,7 @@ public class ServiceController {
      */
     @GetMapping("/joke")
     public String randomJoke() {
-        return RequestUtils.get("https://api.vvhan.com/api/joke");
+        return get("https://api.vvhan.com/api/joke");
     }
 
     /**
