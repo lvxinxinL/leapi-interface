@@ -12,3 +12,10 @@ logging:
       springframework:
         cloud:
           gateway: trace
+knife4j:
+  config:
+    scan-path: com.ghost.leapiinterface.controller
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
