@@ -95,6 +95,6 @@ public class ServiceController {
      */
     @PostMapping("/name")
     public String getNameByJSON(@RequestBody User user, HttpServletRequest request) {
-        return "GET 你的名字是：" + user.getName();
+        return "POST 你的名字是：" + user.getName();
     }
 }
